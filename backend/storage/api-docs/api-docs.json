@@ -1,0 +1,166 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Mahasiswa",
+        "description": "Dokumentasi API untuk sistem mahasiswa",
+        "contact": {
+            "email": "admin@example.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/mahasiswas/{nim}": {
+            "get": {
+                "summary": "Retrieve a single mahasiswa by NIM",
+                "operationId": "c96520d4d6889aad0c3b7583101a19da",
+                "parameters": [
+                    {
+                        "name": "nim",
+                        "in": "path",
+                        "description": "Nomor Induk Mahasiswa",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Mahasiswa detail",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Mahasiswa"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Mahasiswa not found"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Update an existing mahasiswa",
+                "operationId": "c75df982233d5e8d9cd2c81ac3e84595",
+                "parameters": [
+                    {
+                        "name": "nim",
+                        "in": "path",
+                        "description": "Nomor Induk Mahasiswa",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Mahasiswa"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Mahasiswa updated successfully"
+                    },
+                    "404": {
+                        "description": "Mahasiswa not found"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete a mahasiswa",
+                "operationId": "e0a41db809695077607b7ea85bc493a6",
+                "parameters": [
+                    {
+                        "name": "nim",
+                        "in": "path",
+                        "description": "Nomor Induk Mahasiswa",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Mahasiswa deleted successfully"
+                    },
+                    "404": {
+                        "description": "Mahasiswa not found"
+                    }
+                }
+            }
+        },
+        "/api/mahasiswas": {
+            "post": {
+                "summary": "Create a new mahasiswa",
+                "operationId": "3b1f0e570513ff8830cc1aa4c8ce27d5",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Mahasiswa"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Mahasiswa created successfully"
+                    },
+                    "400": {
+                        "description": "Validation error"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Mahasiswa": {
+                "required": [
+                    "nim",
+                    "nama",
+                    "alamat",
+                    "tanggal_lahir",
+                    "jurusan"
+                ],
+                "properties": {
+                    "nim": {
+                        "type": "string",
+                        "example": "123456"
+                    },
+                    "nama": {
+                        "type": "string",
+                        "example": "John Doe"
+                    },
+                    "alamat": {
+                        "type": "string",
+                        "example": "Jl. Merdeka No. 1"
+                    },
+                    "tanggal_lahir": {
+                        "type": "string",
+                        "format": "date",
+                        "example": "2000-01-01"
+                    },
+                    "jurusan": {
+                        "type": "string",
+                        "example": "Teknik Informatika"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    }
+}
